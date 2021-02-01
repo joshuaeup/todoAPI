@@ -1,20 +1,20 @@
 const express = require("express");
-
 const app = express();
 const PORT = 3000;
+const bodyParser = require("body-parser");
 
 // MIDDLEWARE
+// Allows public static files to be accessed anywhere
 app.use(express.static(__dirname + "/public"));
-// app.use((req, res, next) => {
-//     console.log("Hello");
-//     next();
-// });
+// used to parse the data retrieved from the dom
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// Route
-// app.get("/", (req, res) => {
-//     console.log(req);
-//     res.send("Hello World");
-// });
+// Post route for add
+app.post("/add", (req, res) => {
+    console.log(req.body);
+    res.send("It works!");
+});
 
 // Listen on port
 app.listen(PORT, () => {
